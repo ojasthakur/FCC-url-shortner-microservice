@@ -22,7 +22,7 @@ const createUrl = async (req, res) => {
 
     //check if long url is valid using the validUrl.isUri method
 
-    if (validUrl.isUri(original_url)) {
+    if (validUrl.isWebUri(original_url)) {
         try {
             let url = await Url.findOne({
                 original_url
