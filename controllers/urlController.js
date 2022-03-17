@@ -4,6 +4,11 @@ const shortid = require('shortid')
 const { findOne } = require('../models/UrlModel')
 require('dotenv').config()
 
+let urlRegex = new RegExp (/(?<=(http|https):\/\/)[^\/]+/)
+
+
+
+
 const baseUrl = process.env.BASE_URL || 'http:localhost:3000/api/shorturl'
 
 const createUrl = async (req, res) => {
@@ -22,7 +27,7 @@ const createUrl = async (req, res) => {
 
     //check if long url is valid using the validUrl.isUri method
 
-    if (validUrl.isWebUri(original_url)) {
+    if (original_url.match(urlRegex)) {
         try {
             let url = await Url.findOne({
                 original_url
