@@ -22,7 +22,7 @@ const createUrl = async (req, res) => {
 
     //check if long url is valid using the validUrl.isUri method
 
-    if (validUrl.isHttpsUri(original_url)) {
+    if (validUrl.isUri(original_url)) {
         try {
             let url = await Url.findOne({
                 original_url
@@ -50,7 +50,7 @@ const createUrl = async (req, res) => {
             res.status(500).json({ msg: 'server error' })
         }
     } else {
-        res.status(401).json({error: 'invalid url'})
+        res.status(401).json({error: 'Invalid URL'})
     }
 
 }
