@@ -34,7 +34,10 @@ const createUrl = async (req, res) => {
             })
 
             if (url) {
-                res.json(url)
+                res.json({
+                    original_url: url.original_url,
+                    short_url: url.urlCode
+                })
             } else {
                 const shortUrl = baseUrl + '/' + urlCode
                 //saving to db
